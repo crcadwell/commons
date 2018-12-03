@@ -1,6 +1,4 @@
 %{
-mice.Mice (manual) # Basic mouse info
-
 animal_id           : int                                            # id number
 ---
 other_id=""         : varchar(20)                                    # alternative id number
@@ -14,23 +12,19 @@ facility="unknown"  : enum('TMF','Taub','Other','unknown')           # animal's 
 room="unknown"      : enum('VD4','T014','T057','T086D','Other','unknown') # animal's current room 
 rack=null           : tinyint                                        # animal's curent rack 
 row=""              : char                                           # animal's curent row
-
 mouse_notes=""      : varchar(4096)                                  # other comments and distinguishing features
 mouse_ts=CURRENT_TIMESTAMP : timestamp                               # automatic
 %}
 
 
 
-classdef Mice < dj.Relvar
+classdef Mice < dj.Manual
 
 	properties(Constant)
 		table = dj.Table('mice.Mice')
 	end
 
 	methods
-		function self = Mice(varargin)
-			self.restrict(varargin)
-        end
         function makeTuples(self,key)
             self.insert(key)
         end
